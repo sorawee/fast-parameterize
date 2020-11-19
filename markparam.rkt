@@ -12,7 +12,7 @@
     [(init) (make-parameter init values)]
     [(init converter)
      (define key (vector 'key))
-     (define value (converter init))
+     (define value init)
      (case-lambda
        [()
         (define boxed-value (continuation-mark-set-first #f key))

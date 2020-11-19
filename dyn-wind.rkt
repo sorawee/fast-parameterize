@@ -9,10 +9,11 @@
 (define make-parameter
   (case-lambda
     [(init guard)
-     (let ([v (guard init)])
+     (let ([v init])
        (case-lambda
          [() v]
-         [(u) (set! v (guard u))]))]
+         [(u) (set! v (guard u))]
+         [(_ u) (set! v u)]))]
     [(init)
      (make-parameter init (lambda (x) x))]))
 
@@ -22,9 +23,11 @@
    #:with (p ...) (generate-temporaries #'(x ...))
    #:with (y ...) (generate-temporaries #'(x ...))
    #'(let ({~@ [p x] [y v]} ...)
-       (define (swap)
-         (let ([tmp (p)])
-           (p y)
-           (set! y tmp))
-         ...)
-       (dynamic-wind swap (lambda () e1 e2 ...) swap))])
+       (dynamic-wind
+         (lambda ()
+           (let ([tmp (p)])
+             (p y)
+             (set! y tmp))
+           ...)
+         (lambda () e1 e2 ...)
+         (lambda () (p #f y) ...)))])
