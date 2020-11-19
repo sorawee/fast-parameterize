@@ -1,0 +1,25 @@
+#lang racket
+
+(require "dyn-wind.rkt")
+
+(define test
+  (make-parameter 0))
+(test)
+(test 1)
+(test)
+(parameterize ([test 2])
+  (test))
+(test)
+(parameterize ([test 2])
+  (test 3)
+  (test))
+(test)
+(define k (lambda (x) x))
+(let () (set! k (call/cc k))
+       'k)
+(parameterize ([test 2])
+  (test (call/cc k))
+  (test))
+(test)
+(k 3)
+(test)
