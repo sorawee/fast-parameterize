@@ -1,5 +1,9 @@
 #lang racket/base
 
+;; Adapted from https://www.scheme.com/csug6/system.html
+;;
+;; Note that this version doesn't evaluate the body in tail position
+
 (provide make-parameter
          parameterize)
 

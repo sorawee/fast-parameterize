@@ -1,5 +1,7 @@
 #lang racket/base
 
+;; Adapted from https://srfi.schemers.org/srfi-157/srfi-157.html
+
 (provide parameterize make-parameter)
 (require syntax/parse/define
          (for-syntax racket/base))
