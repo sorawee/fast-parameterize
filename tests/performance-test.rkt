@@ -2,7 +2,7 @@
 
 ;; tests from @mflatt
 
-(require (prefix-in m: "markparam.rkt"))
+(require (prefix-in m: fast-parameterize))
 
 (define N 10000000)
 

@@ -1,6 +1,6 @@
 #lang racket
 
-(require "dyn-wind.rkt")
+(require fast-parameterize)
 
 (define test
   (make-parameter 0))
