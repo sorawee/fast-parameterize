@@ -34,7 +34,7 @@
        [(ht v) (hash-set ht key (box v))])]))
 
 (define (extend-parameterization xs)
-  (for/fold ([ht (or (current-parameterization) (hash))])
+  (for/fold ([ht (or (current-parameterization) (hasheq))])
             ([x (in-list xs)])
     ((car x) ht (cdr x))))
 
